@@ -1,3 +1,9 @@
+* insert data from sashelp class and insert into the work libs;
+
+data WORK.class;
+	set sashelp.class;
+run;
+
 *means data;
 
 proc means data=work.class;

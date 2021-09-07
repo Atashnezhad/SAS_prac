@@ -1,3 +1,9 @@
+* insert data from sashelp class and insert into the work libs;
+
+data WORK.class;
+	set sashelp.class;
+run;
+
 *check out if a number is in the upper and lower confidence limits;
 
 proc means data=work.class clm;
