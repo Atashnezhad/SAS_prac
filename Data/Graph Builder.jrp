@@ -1,0 +1,226 @@
+﻿New Table( "Algae Mitscherlich",
+	Add Rows( 120 ),
+	New Table Variable( "Notes",
+		["en" =>
+		"Rawlings p 410 (Linda Shurtleff, NCSU) Growth study of blue green algae Spirulina platensis. Omit days=0 from the analysis-14 solutions randomly assigned to days. Use this table to look at equal alphas and betas-see unstacked table to overlay growth plots",
+		"ja" =>
+		"出典： Rawlings p 410 (Linda Shurtleff, NCSU) Growth experiment of blue green algae Spirulina platensis。分析からDays=0を省く。14の解決法がランダムに「Days」に割り当てられた。このテーブルを使って、=alphasと=betasを見る。成長の重ね合わせプロットは積み重ねられていないテーブルを参照。",
+		"x-id" => "S_Rawlings_p_410_Linda_Shurtleff_N_Txt",
+		"zh-CN" =>
+		"Rawlings 第 410 页 (Linda Shurtleff, NCSU) 蓝绿色藻类螺旋藻的增长研究。从分析中省略天数=0 — 14 种溶液被随机分配给天数。使用该表查看相等的 alpha 和等 beta — 参见非堆叠表以叠加增长图"
+		]
+	),
+	New Script(
+		["en" => "Full nonlinear model",
+		"ja" => "非線形回帰フルモデル",
+		"x-id" => "S_Full_nonlinear_model_Scp",
+		"zh-CN" => "完全非线性模型"],
+		Nonlinear( Y( :Algae density ), X( :Mitscherlich ), Finish )
+	),
+	New Script(
+		["en" => "Reduced nonlinear model-with equal alphas",
+		"ja" => "非線形回帰縮小モデル(alpha共通）",
+		"x-id" => "S_Reduced_nonlinear_model_with_equ_Scp",
+		"zh-CN" => "简化非线性模型 — 相等 alpha"],
+		Nonlinear( Y( :Algae density ), X( :equal alphas ), Finish )
+	),
+	New Script(
+		["en" => "Reduced nonlinear model-with equal betas",
+		"ja" => "非線形回帰縮小モデル(beta共通)",
+		"x-id" => "S_Reduced_nonlinear_model_with_equ_2_Scp",
+		"zh-CN" => "简化非线性模型 — 相等 beta"],
+		Nonlinear( Y( :Algae density ), X( :equal betas ), Finish )
+	),
+	New Column(
+		["en" => "Days", "ja" => "Days", "x-id" => "S_Days_Col", "zh-CN" => "天数"],
+		Numeric,
+		"Continuous",
+		Format( "Best", 10 ),
+		Set Property(
+			"Notes",
+			["en" =>
+			"Days of study. Note observations for day 0 should be omitted as they are all zero.",
+			"ja" => "研究の期間(日)。この列の値が0のオブザベーションはすべての列の値がゼロであるとみなして分析から除く。",
+			"x-id" => "S_Days_of_study_Note_observations_Not",
+			"zh-CN" => "研究天数。注意：应忽略天数为 0 的观测值，因为它们全部为零。"]
+		),
+		Set Values(
+			[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0, 1, 2, 3, 4, 5, 6,
+			7, 8, 9, 10, 11, 12, 13, 14, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+			13, 14, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0, 1, 2, 3, 4,
+			5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+			12, 13, 14, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0, 1, 2, 3,
+			4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+		),
+		Set Display Width( 51 )
+	),
+	New Column(
+		["en" => "Treatment",
+		"ja" => "Treatment",
+		"x-id" => "S_Treatment_Col",
+		"zh-CN" => "处理"],
+		Character,
+		"Nominal",
+		Set Property(
+			"Notes",
+			["en" =>
+			"Amount of aeration of the cultures:
+Control = no shaking, no CO2 aeration
+CO2 = CO2 bubbled through culture
+Shaking = Continous shaking but no CO2
+CO & Shaking = CO2 bubbled and shaking",
+			"ja" =>
+			"通気栽培の処置。
+「Control」は振動およびCO2エアレーションなし、
+「CO2」は泡でCO2を入れる、
+「Shaking」は振動を継続するがCO2はなし、
+「CO2 & Shaking」は泡のCO2と振動の両方。",
+			"x-id" => "S_Amount_of_aeration_of_the_cultur_Not",
+			"zh-CN" =>
+			"培养细胞的通风量：
+Control = 不振动，无 CO2 通风
+CO2 = CO2 气泡通过培养细胞
+Shaking = 连续振动，但无 CO2
+CO & Shaking = CO2 气泡并振动"
+			]
+		),
+		Set Values(
+			{"Control", "Control", "Control", "Control", "Control", "Control",
+			"Control", "Control", "Control", "Control", "Control", "Control",
+			"Control", "Control", "Control", "Control", "Control", "Control",
+			"Control", "Control", "Control", "Control", "Control", "Control",
+			"Control", "Control", "Control", "Control", "Control", "Control", "CO2",
+			"CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2",
+			"CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2",
+			"CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "CO2", "Shaking",
+			"Shaking", "Shaking", "Shaking", "Shaking", "Shaking", "Shaking",
+			"Shaking", "Shaking", "Shaking", "Shaking", "Shaking", "Shaking",
+			"Shaking", "Shaking", "Shaking", "Shaking", "Shaking", "Shaking",
+			"Shaking", "Shaking", "Shaking", "Shaking", "Shaking", "Shaking",
+			"Shaking", "Shaking", "Shaking", "Shaking", "Shaking", "CO0 & Shaking",
+			"CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking",
+			"CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking",
+			"CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking",
+			"CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking",
+			"CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking",
+			"CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking",
+			"CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking", "CO0 & Shaking",
+			"CO0 & Shaking"}
+		),
+		Set Display Width( 93 )
+	),
+	New Column(
+		["en" => "Algae density",
+		"ja" => "Algae density",
+		"x-id" => "S_Algae_density_Col",
+		"zh-CN" => "藻类密度"],
+		Numeric,
+		"Continuous",
+		Format( "Best", 10 ),
+		Set Property(
+			"Notes",
+			["en" => "Log scale measurement of the algae density.",
+			"ja" => "藻の密度の対数。",
+			"x-id" => "S_Log_scale_measurement_of_the_alg_Not",
+			"zh-CN" => "记录藻类密度的尺度测量。"]
+		),
+		Set Selected,
+		Set Values(
+			[0, 0.22, 0.555, 1.246, 1.456, 1.878, 2.153, 2.245, 2.542, 2.478, 2.937,
+			3.132, 3.283, 3.397, 3.456, 0, 0.482, 0.801, 1.483, 1.717, 2.128, 2.194,
+			2.639, 2.96, 3.203, 3.39, 3.626, 4.003, 4.167, 4.243, 0, 0.53, 1.183,
+			1.603, 1.994, 2.708, 3.006, 3.867, 4.059, 4.349, 4.699, 4.983, 5.1,
+			5.288, 5.374, 0, 0.184, 0.664, 1.553, 1.91, 2.585, 3.009, 3.403, 3.892,
+			4.367, 4.551, 4.656, 4.754, 4.842, 4.969, 0, 0.536, 0.974, 1.707, 2.032,
+			2.395, 2.706, 3.009, 3.268, 3.485, 3.62, 3.873, 4.042, 4.149, 4.149, 0,
+			0.531, 0.926, 1.758, 2.021, 2.374, 2.933, 3.094, 3.402, 3.564, 3.695,
+			3.852, 3.96, 4.054, 4.168, 0, 0.74, 1.251, 2.432, 3.054, 3.545, 4.213,
+			4.57, 4.833, 5.074, 5.268, 5.391, 5.427, 5.549, 4.594, 0, 0.638, 1.144,
+			2.058, 2.451, 2.836, 3.296, 3.594, 3.79, 3.898, 4.028, 4.15, 4.253,
+			4.314, 4.446]
+		),
+		Set Display Width( 89 )
+	),
+	New Column(
+		["en" => "Mitscherlich",
+		"ja" => "Mitscherlich",
+		"x-id" => "S_Mitscherlich_Col",
+		"zh-CN" => "Mitscherlich"],
+		Numeric,
+		"Continuous",
+		Format( "Fixed Dec", 10, 3 ),
+		Formula(
+			Parameter(
+				{beta1 = 1.7265375148907, alpha2 = 2.3126463466162, beta2 =
+				1.7276757265619, alpha3 = 2.2035001506006, beta3 = 1.7829181242583,
+				alpha4 = 2.2096377418287, beta4 = 1.7954705452297, alpha1 =
+				2.2166439636604},
+				MatchV3( :Treatment,
+					"CO0 & Shaking", alpha4 * (1 - Exp( -beta4 * :Days )),
+					"CO2", alpha2 * (1 - Exp( -beta2 * :Days )),
+					"Control", alpha1 * (1 - Exp( -beta1 * :Days )),
+					"Shaking", alpha3 * (1 - Exp( -beta3 * :Days )),
+					Empty()
+				)
+			)
+		),
+		Set Display Width( 81 )
+	),
+	New Column(
+		["en" => "equal alphas",
+		"ja" => "equal alphas",
+		"x-id" => "S_equal_alphas_Col",
+		"zh-CN" => "相等 alpha"],
+		Numeric,
+		"Continuous",
+		Format( "Fixed Dec", 10, 3 ),
+		Formula(
+			Parameter(
+				{alpha = 2.2177855100795, beta1 = 1.7258236561271, beta2 =
+				1.7828495166393, beta3 = 1.7364687953092, beta4 = 1.7873933654663},
+				alpha * (1 - MatchV3( :Treatment,
+					"CO0 & Shaking", Exp( -beta4 * :Days ),
+					"CO2", Exp( -beta2 * :Days ),
+					"Control", Exp( -beta1 * :Days ),
+					"Shaking", Exp( -beta3 * :Days ),
+					Empty()
+				))
+			)
+		),
+		Set Display Width( 85 )
+	),
+	New Column(
+		["en" => "equal betas",
+		"ja" => "equal betas",
+		"x-id" => "S_equal_betas_Col",
+		"zh-CN" => "相等 beta"],
+		Numeric,
+		"Continuous",
+		Format( "Fixed Dec", 10, 3 ),
+		Formula(
+			Parameter(
+				{alpha1 = 2.1954060218296, alpha2 = 2.2230814761165, alpha3 =
+				2.2067224443319, alpha4 = 2.2265158002283, beta = 1.7483388705413},
+				(1 - Exp( -beta * :Days )) * MatchV3( :Treatment,
+					"CO0 & Shaking", alpha4,
+					"CO2", alpha2,
+					"Control", alpha1,
+					"Shaking", alpha3,
+					Empty()
+				)
+			)
+		),
+		Set Display Width( 77 )
+	),
+	Set Row States(
+		[2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	)
+) << Run Formulas;
+Graph Builder(
+	Variables( X( :equal alphas ), Y( :equal betas ) ),
+	Elements( Points( X, Y, Legend( 3 ) ), Line Of Fit( X, Y, Legend( 6 ) ) )
+);
