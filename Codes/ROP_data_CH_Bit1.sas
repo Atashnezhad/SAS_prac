@@ -18,41 +18,23 @@ title "print means rop csv data";
 proc means data=work.ROP_data;
 run;
 
-/*
-proc means data=work.ROP_data clm;
-run;
-
-proc means data=work.ROP_data clm t prt;
-run;
-*/
 title "WOB vs RPM plot";
 
 proc plot data=work.ROP_data;
 	plot RPM*WOB__lbf_;
 	run;
-	
-/* generate stat for all vars*/
-title "stats for all var";
+
+	/* generate stat for all vars*/
+	title "stats for all var";
+
 proc univariate NORMAL PLOT DATA=work.ROP_data;
 run;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+proc Reg data=work.ROP_data;
+	title "Example of linear regression";
+	model ROP_data_ft_hr=RPM WOB__lbf_ depth__ft_;
+	run;
+
+proc corr data=work.ROP_data plots(MAXPOINTS=NONE)=matrix(HISTOGRAM);
+	var WOB__lbf_ RPM depth__ft_ ROP_data_ft_hr;
+run;
